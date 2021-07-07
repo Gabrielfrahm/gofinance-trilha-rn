@@ -19,7 +19,7 @@ export default function App() {
     Poppins_700Bold
   });
 
-  // enquanto as fontes no sao carregadas
+  // enquanto as fontes nao sao carregadas
   if (!fontsLoaded) {
     return <AppLoading />
   }
