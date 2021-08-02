@@ -103,3 +103,9 @@ export const TransactionList = styled(
 })`
 
 `;
+
+export const LoaderContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
