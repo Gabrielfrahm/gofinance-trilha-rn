@@ -13,6 +13,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import uuid from 'react-native-uuid';
 
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../../hooks/auth';
 import {useNavigation} from '@react-navigation/native';
 import { InputForm } from '../../components/Form/InputForm';
 import { Button } from '../../components/Form/Button';
@@ -27,6 +28,7 @@ import {
   Fields,
   TransactionTypes,
 } from './styles'
+
 
 
 interface FormProps {
@@ -48,8 +50,9 @@ export function Register() {
     key: 'category',
     name: 'Categoria',
   })
+  const {user} = useAuth();
 
-  const dataKey = '@gofinances:transaction';
+  const dataKey = `@gofinances:transaction_user:${user.id}`;
   const navigation = useNavigation();
   const {
     control,

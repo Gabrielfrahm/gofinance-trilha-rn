@@ -5,7 +5,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
-import { NavigationContainer } from '@react-navigation/native';
+import { Routes } from './src/routes';
 
 import {
   useFonts,
@@ -17,8 +17,8 @@ import {
 import theme from './src/global/styles/theme';
 
 // import { AppRoutes } from './src/routes/app.routes';
-import { SignIn } from './src/screens/SignIn';
-import { AuthProvider } from './src/hooks/auth';
+// import { SignIn } from './src/screens/SignIn';
+import { AuthProvider , useAuth } from './src/hooks/auth';
 
 
 export default function App() {
@@ -28,23 +28,25 @@ export default function App() {
     Poppins_700Bold
   });
 
+  const {isLoading} = useAuth();
+
   // enquanto as fontes nao sao carregadas
-  if (!fontsLoaded) {
+  if (!fontsLoaded || isLoading) {
     return <AppLoading />
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
+
         <StatusBar
           barStyle="light-content"
           backgroundColor="transparent"
           translucent
         />
         <AuthProvider>
-          <SignIn />
+          <Routes />
         </AuthProvider>
-      </NavigationContainer>
+
     </ThemeProvider>
   );
 }
